@@ -3,9 +3,7 @@ require 'config/database.php';
 ?>
 
 
-<!DOCTYPE php
->
-<php
+<!DOCTYPE
  lang="en">
 <head>
   <meta charset="UTF-8">
@@ -22,25 +20,25 @@ require 'config/database.php';
 <body>
   <nav>
     <div class="container nav_container">
-      <a href="index.php
+      <a href="<?= ROOT_URL ?>
       " class="nav_logo">FRED</a>
       <ul class="nav_items">
-        <li><a href="blog.php
+        <li><a href="<?= ROOT_URL ?>blog.php
         ">Blog</a></li>
-        <li><a href="about.php
+        <li><a href="<?= ROOT_URL ?>about.php
         ">About</a></li>
-        <li><a href="services.php
+        <li><a href="<?= ROOT_URL ?>services.php
         ">Services</a></li>
-        <li><a href="contact.php
+        <li><a href="<?= ROOT_URL ?>contact.php
         ">Contact</a></li>
-        <!-- <li><a href="sign-in.php
+        <!-- <li><a href="<?= ROOT_URL ?>sign-in.php
         ">Sign in</a></li> -->
         <li class="nav_profile">
             <div class="avatar">
               <img src="./images/avatar1.jpg">
             </div>
             <ul>
-              <li><a href="dashboard.php
+              <li><a href="<?= ROOT_URL ?>admin/dashboard.php
               ">Dashboard</a></li>
               <li><a href="logout.php
               ">Log out</a></li>
@@ -51,3 +49,4 @@ require 'config/database.php';
         <button id="close_nav-btn"><i class="uil uil-multiply"></i></button>
     </div>
   </nav>
+    <!--=============== END OF NAV ====================-->
