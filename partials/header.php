@@ -38,7 +38,7 @@ require 'config/database.php';
               <img src="./images/avatar1.jpg">
             </div>
             <ul>
-              <li><a href="<?= ROOT_URL ?>admin/dashboard.php
+              <li><a href="<?= ROOT_URL ?>admin/index.php
               ">Dashboard</a></li>
               <li><a href="logout.php
               ">Log out</a></li>

@@ -1,5 +1,5 @@
 <?php
-require 'config/database.php';
+require '../config/database.php';
 ?>
 
 
@@ -9,7 +9,7 @@ require 'config/database.php';
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PHP & MySQL Blog Application with Admin Panel</title>
-  <link href="./css/style.css" rel="stylesheet">
+  <link href="<?= ROOT_URL ?>css/style.css" rel="stylesheet">
 
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"> 
 
@@ -38,7 +38,7 @@ require 'config/database.php';
               <img src="./images/avatar1.jpg">
             </div>
             <ul>
-              <li><a href="<?= ROOT_URL ?>admin/dashboard.php
+              <li><a href="<?= ROOT_URL ?>admin/index.php
               ">Dashboard</a></li>
               <li><a href="logout.php
               ">Log out</a></li>
