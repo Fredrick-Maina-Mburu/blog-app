@@ -1,7 +1,37 @@
 <?php
 include 'partials/header.php';
+
+// fetch users from database but not current users
+$current_admin_id = $_SESSION['user-id'];
+$query = "SELECT * FROM users WHERE NOT id = $current_admin_id";
+$users = mysqli_query($connection, $query);
 ?>
     <section class="dashboard">
+        <?php if (isset($_SESSION['add-user-success'])) ://shows if adding a user was successful ?>
+            <div class="alert_message success container">
+              <p>
+                <?= $_SESSION['add-user-success'];
+                unset($_SESSION['add-user-success']);
+                ?>
+              </p>
+            </div>
+            <?php elseif (isset($_SESSION['edit-user-success'])) ://shows if edit user was successful ?>
+            <div class="alert_message success container">
+              <p>
+                <?= $_SESSION['edit-user-success'];
+                unset($_SESSION['edit-user-success']);
+                ?>
+              </p>
+            </div>
+            <?php elseif (isset($_SESSION['edit-user'])) ://shows if edit user was not successful ?>
+            <div class="alert_message error container">
+              <p>
+                <?= $_SESSION['edit-user'];
+                unset($_SESSION['edit-user']);
+                ?>
+              </p>
+            </div>
+        <?php endif ?>
       <div class="container dashboard_container">
         <button id="show_sidebar-btn" class="sidebar_toggle">
           <i class="uil uil-angle-right-b"></i>
@@ -64,29 +94,15 @@ include 'partials/header.php';
                 </tr>
               </thead>
               <tbody>
+                <?php while($user = mysqli_fetch_assoc($users)) : ?>
                 <tr>
-                  <td>Ernrst Achiever</td>
-                  <td>achiever</td>
-                  <td><a href="edit-user.php" class="btn sm">Edit</a></td>
-                  <td><a href="delete-category.php" class="btn sm danger">Delete</a></td>
-                  <td>Yes</td>
+                  <td><?= "{$user['firstname']} {$user['lastname']}" ?></td>
+                  <td><?= "{$user['username']}" ?></td>
+                  <td><a href="<?=ROOT_URL ?>admin/edit-user.php?id=<?=$user['id'] ?>" class="btn sm">Edit</a></td>
+                  <td><a href="<?=ROOT_URL ?>admin/delete-user.php?id=<?=$user['id'] ?>" class="btn sm danger">Delete</a></td>
+                  <td><?= $user['is_admin'] ? 'Yes' : 'No' ?></td>
                 </tr>
-
-                <tr>
-                  <td>Ernrst Achiever</td>
-                  <td>achiever</td>
-                  <td><a href="edit-user.php" class="btn sm">Edit</a></td>
-                  <td><a href="delete-category.php" class="btn sm danger">Delete</a></td>
-                  <td>Yes</td>
-                </tr>
-
-                <tr>
-                  <td>Jane Doe</td>
-                  <td>doe</td>
-                  <td><a href="edit-user.php" class="btn sm">Edit</a></td>
-                  <td><a href="delete-category.php" class="btn sm danger">Delete</a></td>
-                  <td>Yes</td>
-                </tr>
+                <?php endwhile ?>
               </tbody>
             </table>
         </main>
