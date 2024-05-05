@@ -31,6 +31,22 @@ $users = mysqli_query($connection, $query);
                 ?>
               </p>
             </div>
+            <?php elseif (isset($_SESSION['delete-user'])) ://shows if deleting a user was unsuccessful ?>
+            <div class="alert_message error container">
+              <p>
+                <?= $_SESSION['delete-user'];
+                unset($_SESSION['delete-user']);
+                ?>
+              </p>
+            </div>
+            <?php elseif (isset($_SESSION['delete-user-success'])) ://shows if deleting a user was successful ?>
+            <div class="alert_message success container">
+              <p>
+                <?= $_SESSION['delete-user-success'];
+                unset($_SESSION['delete-user-success']);
+                ?>
+              </p>
+            </div>
         <?php endif ?>
       <div class="container dashboard_container">
         <button id="show_sidebar-btn" class="sidebar_toggle">
@@ -84,6 +100,7 @@ $users = mysqli_query($connection, $query);
         <main>
             <h2>Manage Users</h2>
             <table>
+              <?php if(mysqli_num_rows($users) > 0) : ?>
               <thead>
                 <tr>
                   <th>Name</th>
@@ -104,6 +121,9 @@ $users = mysqli_query($connection, $query);
                 </tr>
                 <?php endwhile ?>
               </tbody>
+              <?php else : ?>
+                <div class="alert_message error container">No users found<div>
+              <?php endif ?>
             </table>
         </main>
       </div>
