@@ -12,7 +12,7 @@ if (isset($_POST['submit'])) {
   }
 
   // redirect to add category page with form data if there was an error in submitting data
-  if (isset($_session['add-category'])) {
+  if (isset($_SESSION['add-category'])) {
     $_SESSION['add-category-data'] = $_POST;
     header('location: ' . ROOT_URL . 'admin/add-category.php');
     die();

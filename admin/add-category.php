@@ -15,7 +15,7 @@ unset($_SESSION['add-category-data']);
     <?php if (isset($_SESSION['add-category'])) : ?>
       <div class="alert_message error">
         <p>
-          <?= $_SEESION['add-category'];
+          <?= $_SESSION['add-category'];
           unset($_SESSION['add-category'])
           ?>
         </p>
