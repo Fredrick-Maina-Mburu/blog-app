@@ -108,11 +108,11 @@ $posts = mysqli_query($connection, $query);
           <?php while($post = mysqli_fetch_assoc($posts)) : ?>
             <!-- use category id to get category title of the cureent post -->
             <?php
-            $category_id = $post['category_id'];
-            $category_query = "SELECT title FROM categories where id = $category_id";
-            $category_result = mysqli_query($connection, $category_query);
-            $category = mysqli_fetch_assoc($category_result);
-            ?>
+              $category_id = $post['category_id'];
+              $category_query = "SELECT title FROM categories WHERE id = $category_id";
+              $category_result = mysqli_query($connection, $category_query);
+              $category = mysqli_fetch_assoc($category_result);
+              ?>
             <tr>             
               <td><?= $post['title'] ?></td>
               <td><?= $category['title'] ?></td>
