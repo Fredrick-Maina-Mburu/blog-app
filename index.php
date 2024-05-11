@@ -57,7 +57,7 @@ $posts = mysqli_query($connection, $query);
 
   <!--=============== END OF FEATURED POST ====================-->
 
-  <section class="posts">
+  <section class="posts <?= $featured ? '' : 'section__extra-margin' ?>">
     <div class="container posts_container">
       <?php while($post = mysqli_fetch_assoc($posts)) : ?>
       <article class="post">
@@ -74,7 +74,7 @@ $posts = mysqli_query($connection, $query);
           ?>
           <a href="<?= ROOT_URL ?>category-posts.php?id=<?= $post['category_id'] ?>" class="category_button"><?=$category['title'] ?></a>
           <h3 class="post_title">
-            <a href="post.php">
+            <a href="<?= ROOT_URL ?>post.php?id=<?= $post['id'] ?>">
             <?= substr($post['title'], 0, 45) ?>...
             </a>
           </h3>
@@ -108,12 +108,13 @@ $posts = mysqli_query($connection, $query);
 
   <section class="category_buttons">
     <div class="container category_buttons-container">
-      <a href="" class="category_button">Category</a>
-      <a href="" class="category_button">Wild Life</a>
-      <a href="" class="category_button">Art</a>
-      <a href="" class="category_button">Science &Technology</a>
-      <a href="" class="category_button">Food</a>
-      <a href="" class="category_button">Music</a>
+      <?php
+        $all_categories_query = "SELECT * FROM categories";
+        $all_categories_result = mysqli_query($connection, $all_categories_query);
+        ?>
+        <?php while($category = mysqli_fetch_assoc($all_categories_result)) : ?>
+          <a href="<?= ROOT_URL ?>category-posts.php?id=<?= $category['id'] ?>" class="category_button"><?= $category['title'] ?></a>
+        <?php endwhile ?>
     </div>
   </section>
   <!--=============== END OF CATEGORY BUTTONS ====================-->
